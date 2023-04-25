@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [text, setText] = useState("");
+  const GrabText = (event) => {
+    setText(event.target.value);
+  };
+
+  const [count, setCount] = useState(0);
+  const Increase = () => {
+    setCount(count + 1);
+  };
+  const Decrease = () => {
+    setCount(count - 1);
+  };
+  const Zero = () => {
+    setCount(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={GrabText} />
+      {text}
+
+      <button onClick={Increase}>Increase</button>
+      <button onClick={Decrease}>Decrease</button>
+      <button onClick={Zero}>Set to Zero</button>
+
+      {count}
     </div>
   );
 }
